@@ -1,0 +1,33 @@
+version: '3.7'
+ 
+services:
+  testexpo:
+    environment:
+      - REACT_NATIVE_PACKAGER_HOSTNAME=10.0.0.2
+      # Will tell react-native builder to use the configured ip when exposing the bundler, else will use the docker container’s ip and will not be able to access from your phone.
+    image: sonyarouje/expo-buster:latest
+    extra_hosts:
+      - "devserver:10.0.0.2"
+    command: "--gitRepo sarouje.visualstudio.com/_git/expotest --pat z66cu5tlfasa7mbiqwrjpskia"
+    #Specify your git repo to get the source code and the pat code. When running docker-compose up, docker container will use these details to clone your repo to /home/dev/src directory of the container.
+    expose:
+      - "19000" 
+      - "19001"
+      - "19002"
+    ports:
+      - "19000:19000"
+      # Debug port
+      - "19001:19001"
+      # Debug port
+      - "19002:19002"
+      # Node port
+    volumes:
+      - myexpo:/home/node/src
+      # Containers are short lived and stopping the container will loose you data. For e.g. once the container is up we might install npm packages. If the packages are not able to persist, then we need to reinstall packages every time we start the container. In order to persist the packages and changes, docker-compose creates a named volume and keep the files of /home/dev/src in the volume and can be accessible even after docker restart.
+      # Keep in mind 'docker-compose down' will remove the volume and we need to reinstall all the packages again.
+volumes:
+  myexpo:
+
+  # Sources :
+  # https://docs.docker.com/get-started/08_using_compose/ 
+  # https://sonyarouje.com/2019/08/02/expo-react-native-development-in-docker/

@@ -1,0 +1,14 @@
+# Android Studio + Android SDK normalement copmpris dans l'image react-native-community/docker-android
+# --------------- DÉBUT COUCHE ANDROID STUDIO ---------------
+# --------------- FIN COUCHE ANDROID STUDIO -----------------
+
+# --------------- DÉBUT COUCHE ANDROID SDK ---------------
+# --------------- FIN COUCHE ANDROID SDK -----------------
+
+
+# Sources :
+# https://docs.docker.com/get-started/
+# https://docs.docker.com/engine/reference/builder/
+# https://docs.docker.com/get-started/07_multi_container/
+# https://collabnix.com/creating-your-first-react-app-using-docker/
+# https://medium.com/@ganiilhamirsyadi/dockerize-react-native-expo-app-152c1e65e76c

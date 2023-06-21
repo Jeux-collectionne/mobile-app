@@ -1,0 +1,16 @@
+# --------------- DÉBUT COUCHE REACT NATIVE ---------------
+RUN reactnativecommunity/react-native-android:latest
+
+# Définit les ports à utiliser
+#EXPOSE 19000 19001 19002
+
+RUN expo start
+# --------------- FIN COUCHE REACT NATIVE -----------------
+
+
+# Sources :
+# https://docs.docker.com/get-started/
+# https://docs.docker.com/engine/reference/builder/
+# https://docs.docker.com/get-started/07_multi_container/
+# https://collabnix.com/creating-your-first-react-app-using-docker/
+# https://medium.com/@ganiilhamirsyadi/dockerize-react-native-expo-app-152c1e65e76c

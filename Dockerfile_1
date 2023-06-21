@@ -1,0 +1,86 @@
+# --------------- DÉBUT COUCHE NODE ---------------
+
+# Utiliser l'image de base officielle de Node.js
+FROM node:latest as node
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copie les fichiers du projet React Native dans le conteneur
+ADD . /app
+
+# Installer les dépendances
+RUN npm install
+
+# Copier le reste des fichiers de l'application
+COPY . .
+
+# Exposer le port nécessaire pour ton application
+EXPOSE 3000
+
+# Définir la commande par défaut pour lancer ton application
+CMD ["npm", "start"]
+
+# --------------- FIN COUCHE NODE -----------------
+
+
+# --------------- DÉBUT COUCHE REACT NATIVE ---------------
+
+# Utiliser l'image reactnative pour la partie React Native
+FROM reactnative/react-native:latest
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copier les fichiers de l'application React Native
+COPY . .
+
+# Exposer le port nécessaire pour l'application React Native (par exemple, 8081)
+EXPOSE 8081
+
+# Exécuter les commandes nécessaires pour préparer l'environnement React Native
+RUN yarn install
+
+# Définir la commande par défaut pour lancer l'application React Native
+CMD ["react-native", "start"]
+
+# --------------- FIN COUCHE REACT NATIVE -----------------
+
+
+# Android Studio + Android SDK normalement copmpris dans l'image react-native-community/docker-android
+# --------------- DÉBUT COUCHE ANDROID STUDIO ---------------
+
+# Utiliser l'image androidstudio pour l'émulateur Android
+FROM mobiledevops/android-sdk-image:latest
+#FROM androidstudio/android-studio:latest
+
+# Installer les dépendances nécessaires pour l'émulateur Android
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        qemu-kvm \
+        libvirt-clients \
+        libvirt-daemon-system \
+        bridge-utils \
+        virtinst \
+        cpu-checker \
+        mesa-utils \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Définir la commande par défaut pour lancer l'émulateur Android
+CMD ["emulator"]
+
+# --------------- FIN COUCHE ANDROID STUDIO -----------------
+
+
+# --------------- DÉBUT COUCHE ANDROID SDK ---------------
+
+# --------------- FIN COUCHE ANDROID SDK -----------------
+
+# Sources :
+# https://docs.docker.com/get-started/
+# https://docs.docker.com/engine/reference/builder/
+# https://docs.docker.com/get-started/07_multi_container/
+# https://collabnix.com/creating-your-first-react-app-using-docker/
+# https://medium.com/@ganiilhamirsyadi/dockerize-react-native-expo-app-152c1e65e76c

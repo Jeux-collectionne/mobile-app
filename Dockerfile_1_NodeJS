@@ -1,0 +1,46 @@
+# --------------- DÉBUT COUCHE NODE ---------------
+# Récupère l'image la plus récente de Node.js
+FROM node:latest  
+#=> pas nécessaire ? téléchargement de Node est inclus dans le montage de l'image React Native Community
+# node:18-alpine = version très légère de Node, basée sur la distro Linux-Alpine, très légère (5Mo)
+# node:latest = version complète de Node, basée sur la distro Linux-Ubuntu, plus lourde (1Go)
+
+# Définit un label pour ce container
+LABEL version=1.0 description="Image devant permettre l'installation de React Native dans un container Docker et d'un environnement de test"
+
+# Définit les variables d'environnement pour Node
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
+
+# Définit les ports à utiliser (19000 pour Node, 19002 pour les testsde debug)
+ARG PORT=19006
+ENV PORT $PORT
+EXPOSE $PORT 19001 19002
+
+# Définit le répertoire de travail de l'application
+WORKDIR /Jeux_collectionne/MobileApp
+
+# 
+COPY . .
+
+# Définit les commandes à exécuter au lancement du conteneur
+RUN yarn install
+
+# Définit les commandes à utiliser
+CMD ["node", "src/index.js"]
+# OU :
+RUN npm install && npm install -g expo-cli
+# Installer les packages npm et expo-cli
+CMD [ "npm", "start" ]
+# initialiser un projet Expo (crée un nouveau répertoire nommé "react-native-app" et installe les dépendances nécessaires en utilisant npm (flag "--npm" à la fin de la commande))
+RUN npx expo-cli init react_native_app --npm
+
+# --------------- FIN COUCHE NODE -----------------
+
+
+# Sources :
+# https://docs.docker.com/get-started/
+# https://docs.docker.com/engine/reference/builder/
+# https://docs.docker.com/get-started/07_multi_container/
+# https://collabnix.com/creating-your-first-react-app-using-docker/
+# https://medium.com/@ganiilhamirsyadi/dockerize-react-native-expo-app-152c1e65e76c

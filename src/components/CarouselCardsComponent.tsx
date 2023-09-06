@@ -10,7 +10,7 @@ import BoardGameEvent from '../interfaces/BoardGameEvent';
 // Composant "carroussel", pour faire défiler une liste d'évènements, crowfundings... (depuis 'CarouselElementComponent')
 
 // export default function CarouselCardsComponent(carouselCardItem: BoardGameEvent[]) {
-export default function CarouselCardsComponent(props: any) {
+export default function CarouselCardsComponent() {
 
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
@@ -26,7 +26,11 @@ export default function CarouselCardsComponent(props: any) {
                 // autoPlay={false}
                 // Passer une carouselCardItem générique ici pour appeler le composant dans HomeScreen
                 // data={carouselCardItem}
-                data={boardGameEventTable}
+                /* Fonctionne avec CarouselCardsComponent(props: any)
+                data={boardGameEventTable} 
+                et dans HomeScreen : <CarouselCardsComponent boardGameEventTable={dataEventsTest} /> 
+                SI FONCTIONNE PAS AVEC UNE VARIABLE : faire 3 compo différents, avec les variables en dur */
+                data={dataEventsTest}
                 scrollAnimationDuration={2000}
                 onSnapToItem={(index: any) => console.log('current index:', index)}
                 renderItem={({ index }) => (

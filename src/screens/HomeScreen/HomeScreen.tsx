@@ -16,7 +16,7 @@ export default function HomeScreen(props: any) {
       <View style={styles.container}>
         <Text style={styles.title}>Events</Text>
         {/* passer le set de data en param du composant appelé  => voir comment ça fonctionne */}
-        <CarouselCardsComponent boardGameEventTable={dataEventsTest} />
+        <CarouselCardsComponent />
         {/* <CarouselCardsComponent boardGameEventTable ={dataEventsTest} /> */}
       </View>
       <View style={styles.container}>

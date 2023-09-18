@@ -33,3 +33,8 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+#Perso divers:
+2023-08-03 16_58_14-Window.png
+package.json
+package-lock.json

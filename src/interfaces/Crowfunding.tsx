@@ -1,7 +1,13 @@
 export default interface Crowfunding {
   id: number;
   name: string;
-  date: Date;
+  beginningDate: Date;
+  endDate: Date;
+  duration: number;
+  type: string;
+  players: string;
+  playingTime: string;
+  difficultyLevel: number;
   description: string;
+  website?: string;
 }
-// A VIRER

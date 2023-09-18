@@ -1,22 +1,13 @@
-/*************** VERSION DE TEST ***************/
-
 import React from 'react'
 import { StyleSheet, Dimensions, View, Text, TouchableOpacity } from 'react-native'
-// import Carousel from 'react-native-snap-carousel'
-import CarouselCardComponent, { SLIDER_WIDTH, CARD_WIDTH } from './CarouselCardComponent';
-import dataEventsTest from '../dataTests/dataEventsTest';
 import Carousel from 'react-native-reanimated-carousel';
-// import Crowfunding from '../interfaces/Crowfunding';
-import BoardGameEvent from '../interfaces/BoardGameEvent';
+import dataCrowfundingsTest from '../dataTests/dataCrowfundingsTest';
 
-// Composant "carroussel", pour faire défiler une liste d'évènements, crowfundings... (depuis 'CarouselElementComponent')
-
-// export default function CarouselCardsComponent(carouselCardItem: BoardGameEvent[]) {
-export default function CarouselCardsComponent() {
+export default function CarouselCrowfundingsCardsComponent() {
 
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
-  let boardGameEventTable: BoardGameEvent[] = [];
+  // let boardGameEventTable: BoardGameEvent[] = [];
 
     return (
       <View style={{ flex: 1 }}>
@@ -25,30 +16,21 @@ export default function CarouselCardsComponent() {
           width={width}
           height={height/5}
           autoPlay={true}
-          // autoPlay={false}
-          // Passer une carouselCardItem générique ici pour appeler le composant dans HomeScreen
-          // data={carouselCardItem}
-
-          /* Fonctionne partiellement avec CarouselCardsComponent(props: any)
-          data={boardGameEventTable} 
-          et dans HomeScreen : <CarouselCardsComponent boardGameEventTable={dataEventsTest} /> 
-          SI FONCTIONNE PAS AVEC UNE VARIABLE : faire 3 compo différents, avec les variables en dur */
-          data={dataEventsTest}
+          data={dataCrowfundingsTest}
           scrollAnimationDuration={2000}
           onSnapToItem={(index: any) => console.log('current index:', index)}
           renderItem={({ index }) => (
-              <View
-                style={{
-                  flex: 1,
-                  borderWidth: 1,
-                  justifyContent: 'center',
-                }}
-              >
-                <Text style={{ textAlign: 'justify', fontSize: 100 }}>
-                  {index}
-                  <CarouselCardComponent  />
-                </Text>
-              </View>
+            <View
+              style={{
+                flex: 1,
+                borderWidth: 1,
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ textAlign: 'justify', fontSize: 100 }}>
+                {index}
+              </Text>
+            </View>
           )}
         />
       </View>

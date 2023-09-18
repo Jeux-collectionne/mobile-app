@@ -1,32 +1,26 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
-import CarouselCardsComponent from '../../components/CarouselCardsComponent';
-import dataEventsTest from '../../dataTests/dataEventsTest';
-// import SafeAreaScreen from '../../screens/SafeAreaScreen/SafeAreaScreen';
-// import logo from './assets/logo.png';
+import { StyleSheet, View, Text } from 'react-native';
+import CarouselCrowfundingsCardsComponent from '../../components/CarouselCrowfundingsCardsComponent';
+import CarouselEventsCardsComponent from '../../components/CarouselEventsCardsComponent';
 
-export default function HomeScreen(props: any) {
-
-  const PlaceholderImage = require('../../../assets/logo.png');
+export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* <SafeAreaScreen /> */}
-      {/* <Text>HomeScreen</Text> */}
       <View style={styles.container}>
         <Text style={styles.title}>Events</Text>
+        <CarouselEventsCardsComponent />
         {/* passer le set de data en param du composant appelé  => voir comment ça fonctionne */}
-        <CarouselCardsComponent />
         {/* <CarouselCardsComponent boardGameEventTable ={dataEventsTest} /> */}
       </View>
       <View style={styles.container}>
         <Text style={styles.title}>Tendances</Text>
-        <CarouselCardsComponent />
+        <CarouselEventsCardsComponent />
       </View>
 
       <View style={styles.container}>
         <Text style={styles.title}>Crowfundings</Text>
-        <CarouselCardsComponent />
+        <CarouselCrowfundingsCardsComponent />
       </View>
       
     </View>

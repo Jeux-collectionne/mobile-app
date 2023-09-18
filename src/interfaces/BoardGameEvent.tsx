@@ -1,4 +1,4 @@
-// Interface générique pour les encarts "Evènements", "Crowfundings" et "Tendances du moment (= actualités, nouvelles sorties, nouveaux tutos...)"
+// Interface générique pour les encarts "Evènements" et "Tendances du moment (= actualités, nouvelles sorties, nouveaux tutos...)"
 export default interface BoardGameEvent {
   id: number;
   name: string;

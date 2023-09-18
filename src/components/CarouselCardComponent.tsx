@@ -1,3 +1,5 @@
+/*************** VERSION DE TEST ***************/
+
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 import BoardGameEvent from '../interfaces/BoardGameEvent';
